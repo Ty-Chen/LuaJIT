@@ -1,3 +1,7 @@
+local _M = {}
+
+local N = 1e7
+
 -- defines a factorial function
 Counters = {}
 Names = {}
@@ -19,6 +23,7 @@ function traceback ()
 end
 
 function hook ()
+    print(debug.traceback())
     local f = debug.getinfo(2, "f").func
     local count = Counters[f]
     if count == nil then 
@@ -44,21 +49,35 @@ function getname (func)
     end
 end
 
-function fact (n)
-    if n == 0 then
-        return 1
-    else
-        return n * fact(n - 1)
+local function heavy()
+    local sum = 0
+    for i = 1, N do
+        sum = sum + i
     end
+    return sum
 end
 
-print("enter a number:")
-a = io.read("*n") -- reads a number
+local function foo()
+    local a = heavy()
+    a = a + heavy()
+    return a
+end
+
+local function bar()
+    return (heavy())
+end
+
+function _M.main()
+    foo()
+    bar()
+end
 
 debug.sethook(hook, "c")
-print(fact(a))
+_M.main()
 debug.sethook()
 
 for func, count in pairs(Counters) do
     print(getname(func), count)
 end
+
+return _M

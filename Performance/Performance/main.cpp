@@ -1,12 +1,7 @@
 ﻿#include "lua.hpp"
+#include "hook.hpp"
 
-void testT1(lua_State* L)
-{
-    luaL_loadfile(L, "t1.lua"); /*调入Lua脚本文件，注意路径*/
-    lua_pcall(L, 0, 0, 0); /*执行Lua脚本*/
-}
-
-void testT2(lua_State* L)
+void TestLoadString(lua_State* L)
 {
     char szBuff[256];
     int  nError;
@@ -22,14 +17,35 @@ void testT2(lua_State* L)
     }
 }
 
+void TestGetInfo(lua_State* L)
+{
+    luaL_loadfile(L, "t1.lua");
+    lua_pcall(L, 0, 0, 0);
+}
+
+void TestLuaTrace(lua_State* L)
+{
+    luaL_loadfile(L, "t2.lua");
+    lua_pcall(L, 0, 0, 0);
+}
+
+void TestCHookRegister(lua_State* L)
+{
+    luaopen_luatrace_c_hook(L);
+    luaL_loadfile(L, "t4.lua");
+    lua_pcall(L, 0, 0, 0);
+}
+
 int main()
 {
-    lua_State *L = luaL_newstate(); /*创建一个解释器句柄*/
-    luaL_openlibs(L); /*打开所有的Lua库*/
+    lua_State *L = luaL_newstate();
+    luaL_openlibs(L);
 
-    testT1(L);
-    testT2(L);
+    //TestLoadString(L);
+    //TestGetInfo(L);
+    //TestLuaTrace(L);
+    TestCHookRegister(L);
 
-    lua_close(L); /*关闭句柄*/
+    lua_close(L);
     return 0;
 }
