@@ -1,4 +1,4 @@
-local _M = {}
+local _M = require "t4"
 
 local N = 1e7
 
@@ -49,29 +49,6 @@ function getname (func)
     end
 end
 
-local function heavy()
-    local sum = 0
-    for i = 1, N do
-        sum = sum + i
-    end
-    return sum
-end
-
-local function foo()
-    local a = heavy()
-    a = a + heavy()
-    return a
-end
-
-local function bar()
-    return (heavy())
-end
-
-function _M.main()
-    foo()
-    bar()
-end
-
 debug.sethook(hook, "c")
 _M.main()
 debug.sethook()
@@ -79,5 +56,3 @@ debug.sethook()
 for func, count in pairs(Counters) do
     print(getname(func), count)
 end
-
-return _M

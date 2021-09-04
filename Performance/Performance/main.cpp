@@ -36,6 +36,12 @@ void TestCHookRegister(lua_State* L)
     lua_pcall(L, 0, 0, 0);
 }
 
+void TestPackage(lua_State* L)
+{
+    luaL_loadfile(L, "module.lua");
+    lua_pcall(L, 0, 0, 0);
+}
+
 int main()
 {
     lua_State *L = luaL_newstate();
@@ -43,8 +49,9 @@ int main()
 
     //TestLoadString(L);
     //TestGetInfo(L);
-    //TestLuaTrace(L);
-    TestCHookRegister(L);
+    TestLuaTrace(L);
+    //TestCHookRegister(L);
+    //TestPackage(L);
 
     lua_close(L);
     return 0;
