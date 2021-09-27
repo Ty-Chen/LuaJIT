@@ -113,6 +113,8 @@ void hook(lua_State *L, lua_Debug *ar)
     hook_time_t time_in = CLOCK_FUNCTION();
     elapsed += time_in - time_out;
 
+    printf(ar->name);
+
     lua_rawgeti(L, LUA_REGISTRYINDEX, hook_index);
 
     event = ar->event;
@@ -168,7 +170,10 @@ static luaL_Reg hook_functions[] =
 int luaopen_luatrace_c_hook(lua_State *L)
 {
     /* Register the module functions */
-    luaL_register(L, "c_hook", hook_functions);
+    //luaL_register(L, "c_hook", hook_functions);
+
+    set_hook(L);
+
     return 1;
 }
 

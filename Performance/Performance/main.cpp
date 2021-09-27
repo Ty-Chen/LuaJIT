@@ -31,8 +31,14 @@ void TestLuaTrace(lua_State* L)
 
 void TestCHookRegister(lua_State* L)
 {
-    luaopen_luatrace_c_hook(L);
     luaL_loadfile(L, "t4.lua");
+    luaopen_luatrace_c_hook(L);
+    lua_pcall(L, 0, 0, 0);
+}
+
+void TestJitTrace(lua_State* L)
+{
+    luaL_loadfile(L, "testJit.lua");
     lua_pcall(L, 0, 0, 0);
 }
 
@@ -49,9 +55,15 @@ int main()
 
     //TestLoadString(L);
     //TestGetInfo(L);
+<<<<<<< Updated upstream
     TestLuaTrace(L);
     //TestCHookRegister(L);
     //TestPackage(L);
+=======
+    //TestLuaTrace(L);
+    //TestCHookRegister(L);
+    TestJitTrace(L);
+>>>>>>> Stashed changes
 
     lua_close(L);
     return 0;

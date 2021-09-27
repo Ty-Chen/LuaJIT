@@ -26,6 +26,10 @@ function _M.main()
 end
 
 --c_hook.set_hook()
+<<<<<<< Updated upstream
 --_M.main()
+=======
+_M.main()
+>>>>>>> Stashed changes
 
 return _M
