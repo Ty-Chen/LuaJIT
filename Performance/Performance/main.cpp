@@ -55,15 +55,10 @@ int main()
 
     //TestLoadString(L);
     //TestGetInfo(L);
-<<<<<<< Updated upstream
-    TestLuaTrace(L);
-    //TestCHookRegister(L);
-    //TestPackage(L);
-=======
     //TestLuaTrace(L);
     //TestCHookRegister(L);
-    TestJitTrace(L);
->>>>>>> Stashed changes
+    //TestPackage(L);
+    //TestJitTrace(L);
 
     lua_close(L);
     return 0;
