@@ -57,7 +57,7 @@ int main()
     //TestGetInfo(L);
     //TestLuaTrace(L);
     //TestCHookRegister(L);
-    //TestPackage(L);
+    TestPackage(L);
     //TestJitTrace(L);
 
     lua_close(L);
