@@ -114,8 +114,8 @@ Exit0:
 
 void LuaTracker::EndTrack(int nTotalBytes)
 {
-    BOOL bRetCode = 0;
-    hook_time_t nTimeCost = 0;
+    BOOL        bRetCode     = 0;
+    hook_time_t nTimeCost    = 0;
     lu_mem      nMemoryAlloc = 0;
 
     ASSERT_ERROR(m_nTop > 0);
