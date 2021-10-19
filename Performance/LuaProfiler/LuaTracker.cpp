@@ -114,11 +114,7 @@ Exit0:
 
 void LuaTracker::EndTrack(int nTotalBytes)
 {
-<<<<<<< Updated upstream
-    BOOL        bRetCode     = 0;
-=======
     BOOL        bRetCode     = false;
->>>>>>> Stashed changes
     hook_time_t nTimeCost    = 0;
     lu_mem      nMemoryAlloc = 0;
 
